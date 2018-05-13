@@ -1,0 +1,183 @@
+<!DOCUTYPE>
+<html>
+<head>
+	<meta charset = 'utf-8'>
+	<title>宋双双的相册</title>
+	<link rel="stylesheet" type="text/css" href="photo.css">
+</head>
+<body>
+	<div id = "wrapper">
+		<div id= "sliderPage">
+			<div id = "page"><img src="sss1.JPG"></div>
+			<div id = "page"><img src="sss2.JPG"></div>
+			<div id = "page"><img src="sss3.JPG"></div>
+			<div id = "page"><img src="sss4.JPG"></div>
+			<div id = "page"><img src="sss5.JPG"></div>
+			<div id = "page"><img src="sss6.JPG"></div>
+		</div>
+		<button id = "btnLeft"></button>
+		<button id = "btnRight"></button>
+		<div id = "sliderRadius">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+	</div>
+	<script src = 'jquery-3.2.1.js'></script>
+	<script type="text/javascript">
+		var oLi = $('#sliderPage #page');
+		var timer = null;
+		var index = 0;
+		var flag = true;
+		function init () {
+			oLi.css({
+				'left':'970px',
+				'z-index':'1',
+				'top':'50%',
+				'height':'1px',
+				'margin-top':'1px'
+			});
+			oLi.eq(0).css({
+				'top':'50%',
+				'margin-top':'-112px',
+				'height':'224px',
+				'width':'640px',
+				'left':'0px',
+				'opacity':'0.5',
+				'z-index':'1'
+			});
+		
+			oLi.eq(1).css({
+				'top':'50%',
+				'margin-top':'-135px',
+				'height':'270px',
+				'width':'640px',
+				'left':'165px',
+				'opacity':'1',
+				'z-index':'100'
+			});
+		
+			oLi.eq(2).css({
+				'top':'50%',
+				'margin-top':'-112px',
+				'height':'224px',
+				'width':'640px',
+				'left':'330px',
+				'opacity':'0.5',
+				'z-index':'1'
+			});
+		}
+		
+		function leftMove () {
+			if(flag){
+				flag = false;
+				oLi.css({'z-index':'1'});
+				oLi.eq(index%6).animate({
+					'left':'-640px',
+					'margin-top':'0px',
+					'height':'1px',
+					'width':'640px',
+					'opacity':'0.5'
+				})
+				oLi.eq((index + 1)%6).animate({
+					'top':'50%',
+					'margin-top':'-112px',
+					'height':'224px',
+					'width':'640px',
+					'left':'0px',
+					'opacity':'0.5',
+					'z-index':'1'
+				})
+				oLi.eq((index + 2)%6).animate({
+					'left':'165px',
+					'top':'50%',		
+					'margin-top':'-135px',
+					'height':'270px',
+					'width':'640px',
+					'opacity':'1',
+					'z-index':'100'
+				})
+				oLi.eq((index + 3)%6).css({'left':'970px',})
+				oLi.eq((index + 3)%6).animate({
+					'left':'330px',
+					'top':'50%',		
+					'margin-top':'-112px',
+					'height':'224px',
+					'width':'640px',
+					'opacity':'0.5',
+					'z-index':'1'
+				},function() {
+					index ++;
+					flag = true;
+					})
+			}		
+		}
+		init();
+		// timer = setInterval(leftMove,2000)
+		$('#btnRight').click(leftMove);
+
+		function rightMove() {
+			if(flag) {
+				flag = false;
+				oLi.css({'z-index':'1'});
+				//最新移出来的图片
+				oLi.eq((index - 1)%6).css({'left':'-640px'});
+				oLi.eq((index - 1)%6).animate({
+					'left':'0px',
+					'top':'50%',
+					'margin-top':'-112px',
+					'height':'224px',
+					'width':'640px',
+					'opacity':'0.5',
+					'z-index':'1'
+				})
+				oLi.eq(index%6).animate({
+					'left':'165px',
+					'top':'50%',
+					'margin-top':'-135px',
+					'height':'270px',
+					'width':'640px',
+					'opacity':'1',
+					'z-index':'100'
+				})
+				oLi.eq((index + 1)%6).animate({
+					'left':'330px',
+					'top':'50%',
+					'margin-top':'-112px',
+					'height':'224px',
+					'width':'640px',
+					'opacity':'0.5',
+					'z-index':'1'
+				})
+				oLi.eq((index + 2)%6).animate({
+					'left':'970px',
+					'top':'50%',
+					'margin-top':'0px',
+					'height':'1px',
+					'width':'640px',
+					'opacity':'0.5',
+					'z-index':'1'
+				},function() {
+					index--;
+					flag = true;
+				})
+			}
+		}
+		timer = setInterval(leftMove,1000);
+		$('#btnLeft').click(rightMove);
+		$('#wrapper').on('mousemove',function() {
+			clearInterval(timer);
+		})
+		$('#wrapper').on('mouseout',function() {
+			timer = setInterval(leftMove,1000);
+		})
+		
+		
+	</script>
+
+
+</body>
+</html>

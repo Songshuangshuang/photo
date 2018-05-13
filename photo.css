@@ -1,0 +1,59 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+#wrapper {
+	position: relative;
+	width: 970px;
+	height: 310px;
+	top: 150px;
+	border: 1px solid black;
+	margin: 0 auto;
+	overflow: hidden;
+}
+#sliderPage #page {
+	position: absolute;
+	top: 50%;
+	margin-top:-135px;
+	width: 640px;
+	height: 270px;
+	opacity: 0.5;
+	float: left;
+}
+#page img {
+	width: 100%;
+	height: 100%;
+}
+button {
+	position: absolute;
+	border: none;
+	width: 45px;
+	height: 45px;
+	top: 50%;
+	margin-top: -23px;
+	outline: none;/*去掉点击后的蓝色框*/
+	cursor: pointer;
+	z-index: 1000;
+}		
+#btnLeft {
+	left: 0px;
+	background: url("http://r1.ykimg.com/0510000051AD63E96714C04A1400547A");
+}
+#btnRight {
+	right: 0px;
+	background: url("http://r1.ykimg.com/0510000051AD63F56714C04A1305CFEF");
+}
+#sliderRadius {
+	position: absolute;
+	left: 385px;
+	top: 295px;
+}
+#sliderRadius>div{
+	width: 10px;
+	height: 10px;
+	background: #c3c3c3;
+	border-radius: 50%;
+	cursor: pointer;
+	float: left;
+	margin:0 10px;
+}
